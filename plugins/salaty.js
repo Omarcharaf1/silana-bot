@@ -10,7 +10,7 @@ const handler = async (m, { text, usedPrefix, command }) => {
     الظهر : ${res.dhuhur}
     العصر : ${res.ashar}
     المغرب : ${res.maghrib}
-    العشاء : ${res.isya}\n\n\n\n\n\n\n\n instagram :@noureddine_ouafy`, m);
+    العشاء : ${res.isya}\n\n\n\n\n\n\n\n instagram :@nvm2p `, m);
 }
 
 handler.help = ['salaty'];

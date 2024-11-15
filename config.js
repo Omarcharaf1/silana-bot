@@ -9,7 +9,7 @@ global.setting = {
  }
 
 global.owner = [
-['212750768817', 'Omar', true],
+['212750768816', 'Omar', true],
 ['', '', false]
 ]
 
@@ -47,7 +47,7 @@ global.media = {
 global.url = {
  sig: 'https://instagram.com/nvm2p',
  sgh:  'https://github.com/aomar0',
- sgc: 'https://chat.whatsapp.com/DABxracGsi5CQMd5d1N1j7'
+ sgc: 'https://chat.whatsapp.com/Fg57jH1a8kAFP40Sj2EcsT'
 }
 
 global.wait =` انتظر .. أنا أحاول تلبية طلبك ...`

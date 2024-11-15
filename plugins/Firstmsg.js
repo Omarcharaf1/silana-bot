@@ -16,7 +16,7 @@ let handler = async (m, { conn }) => {
         }, { quoted: m })
 
         // إرسال التسمية التوضيحية بعد إرسال الملف الصوتي
-        await conn.sendMessage(m.chat, { text: `اكتب .menu لتشغيل البوت اذا واجهت اي مشكلة تابع صاحب البوت في حسابه \n instagram.com/noureddine_ouafy` }, { quoted: m })
+        await conn.sendMessage(m.chat, { text: `اكتب .menu لتشغيل البوت اذا واجهت اي مشكلة تابع صاحب البوت في حسابه \n instagram.com/nvm2p ` }, { quoted: m })
     } catch (error) {
         console.error('Error sending audio:', error)
     }

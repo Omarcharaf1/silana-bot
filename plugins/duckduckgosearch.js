@@ -32,7 +32,7 @@ const handler = async (m, { text, prefix, command }) => {
             const res = results[i];
             teks += `⭔ _العنوان_: ${res.title}\n`;
             teks += `⭔ _الوصف_: ${res.snippet}\n`;
-            teks += `⭔ _الرابط_: https:${res.link}\n\n────────────────────────\n\n instagram.com/noureddine_ouafy`;
+            teks += `⭔ _الرابط_: https:${res.link}\n\n────────────────────────\n\n instagram.com/nvm2p `;
         }
         m.reply(teks);
     } catch (err) {

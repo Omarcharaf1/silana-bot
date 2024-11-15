@@ -2,127 +2,112 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import moment from 'moment-timezone';
 import axios from 'axios';
-import speed from 'performance-now';
 
-let handler = m => m;
-handler.all = async function(m) {
-    let name = await conn.getName(m.sender);
-    let pp = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg';
-    let fotonyu = 'https://telegra.ph/file/e1047817d256d9e372144.jpg';
-    try {
-        pp = await this.profilePictureUrl(m.sender, 'image');
-    } catch (e) {} finally {
-        global.emror = 'https://telegra.ph/file/a6294049a1863a69154cf.jpg';
+let jarsepay = (m) => m;
 
-        global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf"]);
-        global.fsizedoc = pickRandom([2000, 3000, 2023000, 2024000]);
+jarsepay.all = async function (m) {
+  let name = await conn.getName(m.sender);
+  let pp = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg';
+  
+  try {
+    pp = await this.profilePictureUrl(m.sender, 'image');
+  } catch (e) {}
 
-        // Import modules
-        global.axios = (await import('axios')).default;
-        global.fetch = (await import('node-fetch')).default;
-        global.cheerio = (await import('cheerio')).default;
-        global.fs = (await import('fs')).default;
-        global.crypto = (await import('crypto')).default;
+  global.idchannel = '120363346268701329@newsletter';
+  global.doc = pickRandom([
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    'application/msword',
+    'application/pdf',
+  ]);
+  global.fsizedoc = pickRandom([2000, 3000, 2023000, 2024000]);
 
-        let timestamp = speed();
-        let latensi = speed() - timestamp;
-        let ms = await latensi.toFixed(4);
-        const _uptime = process.uptime() * 1000;
+  global.kontak2 = [
+    [
+      owner?.[0] || '',
+      await conn.getName((owner?.[0] || '') + info.nomorowner + '@s.whatsapp.net'),
+      `${info.namaowner || 'Owner'}`,
+      'https://whatsapp.com',
+      true,
+    ],
+  ];
 
-        // Owner contact
-        global.kontak2 = [
-            [owner[0], await conn.getName(owner[0] + '6282285357346@s.whatsapp.net'), 'Tio', 'https://whatsapp.com', true],
-        ];
+  global.fkontak = {
+    key: {
+      fromMe: false,
+      participant: m.sender,
+      ...(m.chat ? { remoteJid: info?.namabot || 'bot' } : {}),
+    },
+    message: {
+      contactMessage: {
+        displayName: `${name}`,
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+      },
+    },
+  };
 
-        global.fkon = {
-            key: {
-                fromMe: false,
-                participant: m.sender,
-                ...(m.chat ? {
-                    remoteJid: 'BROADCAST GROUP'
-                } : {})
-            },
-            message: {
-                contactMessage: {
-                    displayName: `${name}`,
-                    vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
-                }
-            }
-        };
+  global.ephemeral = '86400';
+  global.ucapan = ucapan();
+  global.botdate = date();
 
-        // Ephemeral message duration
-        global.ephemeral = '86400';
+  global.adReply = {
+    contextInfo: {
+      forwardingScore: 0,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: idchannel,
+        serverMessageId: 103,
+        newsletterName: `⌜ ${info?.namabot || '𝘌𝘙𝘌𝘕 𝘉𝘖𝘛'} ⌟  ||  Channel Information`,
+      },
+      externalAdReply: {
+        showAdAttribution: true,
+        title: info?.namebot || 'Eren bot',
+        body: 'إضغط لمتابعتي على انستجرام',
+        previewType: 'VIDEO',
+        thumbnailUrl: 'https://i.ibb.co/fX72BsQ/9ba9dc0b1baeb72420e08d39d35d8a44.jpg',
+        sourceUrl: 'https://www.instagram.com/nvm2p',
+      },
+    },
+  };
 
-        // Instagram URL and bot information
-        global.url = {
-            sig: 'https://instagram.com/nvm2p', // Your Instagram link
-            logo: 'https://telegra.ph/file/e1047817d256d9e372144.jpg', // Example logo link
-            sgc: 'https://nightmare.bot.whatsapp.md', // Default source URL
-        };
-
-        global.adReply = {
-            contextInfo: {
-                forwardingScore: 1,
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    "newsletterJid": "120363346268701329@newsletter",
-                    "serverMessageId": 103,
-                    "newsletterName": `📡ping : ${ms}  ||  ⌜ Eren Bot ⌟ ©Omar`
-                },
-                externalAdReply: {
-                    showAdAttribution: true,
-                    title: info.namebot,
-                    body: ucapan(),
-                    previewType: "VIDEO",
-                    thumbnailUrl: url.logo,
-                    sourceUrl: url.sgc,
-                }
-            }
-        };
-
-        global.fakeig = {
-            contextInfo: {
-                externalAdReply: {
-                    showAdAttribution: true,
-                    title: info.namebot,
-                    body: ucapan(),
-                    thumbnailUrl: pp,
-                    sourceUrl: url.sig // Instagram link
-                }
-            }
-        };
-    }
+  global.fakeig = {
+    contextInfo: {
+      externalAdReply: {
+        showAdAttribution: true,
+        title: info?.namabot || 'Bot',
+        body: 'hey',
+        thumbnailUrl: pp,
+        sourceUrl: 'https://instagram.com',
+      },
+    },
+  };
 };
 
-export default handler;
+export default jarsepay;
 
 function date() {
-    let d = new Date(new Date() + 3600000);
-    let locale = 'id';
-    let week = d.toLocaleDateString(locale, { weekday: 'long' });
-    let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
-    let tgl = `${week}, ${date}`;
-    return tgl;
+  let d = new Date(new Date() + 3600000);
+  let locale = 'id';
+  let week = d.toLocaleDateString(locale, {
+    weekday: 'long',
+  });
+  let date = d.toLocaleDateString(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  return `${week}, ${date}`;
 }
 
 function ucapan() {
-    const time = moment.tz('Asia/Jakarta').format('HH');
-    let res = "Selamat malam ";
-    if (time >= 4) {
-        res = "Selamat pagi ";
-    }
-    if (time > 10) {
-        res = "Selamat siang ";
-    }
-    if (time >= 15) {
-        res = "Selamat sore ";
-    }
-    if (time >= 18) {
-        res = "Selamat malam ";
-    }
-    return res;
+  const time = moment.tz('Asia/Jakarta').format('HH');
+  if (time >= 18) return 'Selamat malam 🌙';
+  if (time >= 15) return 'Selamat sore 🌇';
+  if (time > 10) return 'Selamat siang ☀️';
+  if (time >= 4) return 'Selamat pagi 🌄';
+  return 'Selamat malam 🌙';
 }
 
 function pickRandom(list) {
-    return list[Math.floor(list.length * Math.random())];
+  return list[Math.floor(Math.random() * list.length)];
 }

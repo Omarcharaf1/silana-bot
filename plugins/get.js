@@ -35,7 +35,7 @@ let handler = async (m, { text }) => {
   }
 
   if (!/text|json/.test(response.headers['content-type'])) {
-    return conn.sendFile(m.chat, url,  'instagram.com/noureddine_ouafy', m);
+    return conn.sendFile(m.chat, url,  'instagram.com/nvm2p ', m);
   }
 
   try {

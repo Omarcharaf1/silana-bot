@@ -21,7 +21,7 @@ const handler = async (m, { conn, args, command }) => {
   if (result) {
     const message = {
       image: { url: result },
-      caption: `نتيجة البحث عن الصورة: ${q}\n instagram.com/noureddine_ouafy`
+      caption: `نتيجة البحث عن الصورة: ${q}\n instagram.com/nvm2p `
     };
     await conn.sendMessage(m.chat, message);
   } else {

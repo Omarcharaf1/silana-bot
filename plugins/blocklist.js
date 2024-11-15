@@ -1,4 +1,4 @@
-// Instagram: noureddine_ouafy
+// Instagram: nvm2p 
 
 let handler = async (m, { conn, usedPrefix }) => {
     await conn.fetchBlocklist().then(async data => {
