@@ -15,7 +15,7 @@ global.owner = [
 
 global.info = {
  nomerbot: '',
- pairingNumber: '212750768816',
+ pairingNumber: '',
  nameown: 'Omar',
  nomerown: '212750768816',
  packname: 'sticker by ',
@@ -51,6 +51,9 @@ global.url = {
 }
 
 global.wait =` انتظر .. أنا أحاول تلبية طلبك ...`
+global.rwait =`🕔`
+global.buttons '',
+
 
 // Info Wait
 global.msg = {

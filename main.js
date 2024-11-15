@@ -1,3 +1,10 @@
+/*
+wa.me/6282285357346
+github: https://github.com/sadxzyq
+Instagram: https://instagram.com/tulisan.ku.id
+ini wm gw cok jan di hapus
+*/
+
 import './config.js'
 import path, {
     join
@@ -106,7 +113,7 @@ protoType()
 serialize()
 //Biarlah wk dikit huft 
 /*Klo di hapus dah lah*/ //Nightmare Md
-const Tio = '212717457920' //input here to number connecting
+const Tio = '6282285357346' //input here to number connecting
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({
     ...query,
     ...(apikeyqueryname ? {
@@ -158,6 +165,14 @@ let {
     saveCreds
 } = await useMultiFileAuthState(path.resolve('./system/sessions'))
 
+/*const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const question = (query) => new Promise((resolve) => rl.question(query, resolve));*/
+
 const connectionOptions = {
     pairingCode: true,
     patchMessageBeforeSending: (message) => {
@@ -185,9 +200,9 @@ const connectionOptions = {
     browser: ['Linux', 'Chrome', ''],
     version,
     getMessage: async (key) => {
-        let jid = jidNormalizedUser(key.remoteJid)
-        let msg = await store.loadMessage(jid, key.id)
-        return msg?.message || ""
+        let jid = jidNormalizedUser(key.remoteJid);
+        let msg = await store.loadMessage(jid, key.id);
+        return msg?.message || "";
     },
     msgRetryCounterCache,
     connectTimeoutMs: 60000,
@@ -198,39 +213,45 @@ const connectionOptions = {
     generateHighQualityLinkPreview: true,
     syncFullHistory: true,
     markOnlineOnConnect: true
-}
+};
 
-global.conn = makeWASocket(connectionOptions)
-conn.isInit = false
-global.pairingCode = true
+global.conn = makeWASocket(connectionOptions);
+conn.isInit = false;
+global.pairingCode = true;
 
 if (global.pairingCode && !conn.authState.creds.registered) {
+    let phoneNumber;
 
-    let phoneNumber
-    if (!!global.info.pairingNumber) {
-        phoneNumber = global.info.pairingNumber.replace(/[^0-9]/g, '')
+    const getPhoneNumber = async () => {
+        let number = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number: `)));
+        number = number.replace(/[^0-9]/g, '');
+
+        if (!Object.keys(PHONENUMBER_MCC).some(v => number.startsWith(v))) {
+            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example: 62xxx")));
+            return await getPhoneNumber();
+        }
+
+        return number;
+    };
+
+    if (global.info?.pairingNumber) {
+        phoneNumber = global.info.pairingNumber.replace(/[^0-9]/g, '');
 
         if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 212xxx")))
-            process.exit(0)
+            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example: 62xxx")));
+            process.exit(0);
         }
     } else {
-        phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)))
-        phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-        if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 212xxx")))
-
-            phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)))
-            phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-            rl.close()
-        }
+        phoneNumber = await getPhoneNumber();
     }
 
+    rl.close(); // إغلاق readline بعد الانتهاء
+
     setTimeout(async () => {
-        let code = await conn.requestPairingCode(phoneNumber)
-        code = code?.match(/.{1,4}/g)?.join("-") || code
-        console.log(chalk.yellow(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
-    }, 3000)
+        let code = await conn.requestPairingCode(phoneNumber);
+        code = code?.match(/.{1,4}/g)?.join("-") || code;
+        console.log(chalk.yellow(chalk.bgGreen(`Your Pairing Code: `)), chalk.black(chalk.white(code)));
+    }, 3000);
 }
 
 if (!opts['test']) {
@@ -246,7 +267,7 @@ const directory = './system/sessions';
 function deleteFilesExceptOne(directory, fileNameToKeep) {
     fs.readdir(directory, (err, files) => {
         if (err) {
-            console.error('There is an error:', err);
+            console.error('Terjadi kesalahan:', err);
             return;
         }
 
@@ -255,9 +276,9 @@ function deleteFilesExceptOne(directory, fileNameToKeep) {
             if (file !== fileNameToKeep) {
                 fs.unlink(filePath, (err) => {
                     if (err) {
-                        console.error(`Failed to delete file ${file}:`, err);
+                        console.error(`Gagal menghapus file ${file}:`, err);
                     } else {
-                        console.log(`File ${file} successfully deleted.`);
+                        console.log(`File ${file} berhasil dihapus.`);
                     }
                 });
             }
@@ -293,10 +314,10 @@ async function connectionUpdate(update) {
     // console.log(JSON.stringify(update, null, 4))
     if (global.db.data == null) loadDatabase()
     if (connection === "open") {
-    console.log(chalk.bgGreen(chalk.white('The bot is ON')));
+    console.log(chalk.bgGreen(chalk.white('Bot telah AKTIF')));
     }
     if (connection == 'close') {
-        console.log(chalk.yellow(`📡 Connection has been lost. delete the session and retake the session to run the Bot`));
+        console.log(chalk.yellow(`📡 Koneksi telah terputus. hapus session dan ambil ulang session untuk menjalankan Bot`));
     }
 }
 
@@ -459,7 +480,7 @@ setInterval(async () => {
     if (stopped === 'close' || !conn || !conn.user) return;
     await deleteFilesExceptOne(directory, 'creds.json');
     await clearTmp();
-    conn.reply(Tio + '@s.whatsapp.net', 'Sessions are available', null) >
+    conn.reply(Tio + '@s.whatsapp.net', 'Sessions telah dibersihkan', null) >
         console.log(chalk.cyanBright(
             `\n╭───────────────────·»\n│\n` +
             `│  Sessions clear Successfull \n│\n` +

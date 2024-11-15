@@ -29,11 +29,11 @@ const {
  tz } = moment
 const app = express();
 const port = process.env.PORT || 8082;
-const time = tz('Africa/casablanca').format('HH:mm:ss');
+const time = tz('Asia/Jakarta').format('HH:mm:ss');
 const currentFilePath = new URL(import.meta.url).pathname;
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-let bot_ku = 'SILANA BOT'
+let bot_ku = 'Merry'
 say(bot_ku, {
   font: "simpleBlock",
   align: "center",
@@ -46,12 +46,12 @@ say('by ' + info.nameown, {
   colors: ["white"]
 })
 app.listen(port, () => {
-  console.log(chalk.green(`⚡ Port ${port} has opened`));
+  console.log(chalk.green(`⚡ Port ${port} telah terbuka`));
 });
 const folderPath = './tmp';
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath);
-        console.log(chalk.green('Folder tmp created successfully.'));
+        console.log(chalk.green('Folder tmp berhasil dibuat.'));
         }
         
 let isRunning = false;
@@ -81,7 +81,7 @@ async function start(file) {
     })
     p.on("exit", (_, code) => {
         isRunning = false
-        console.error("[❗] Exit with code :", code)
+        console.error("[❗] Keluar dengan kode :", code)
         if (code !== 0) return start(file)
         watchFile(args[0], () => {
             unwatchFile(args[0])
@@ -108,7 +108,7 @@ const totalFoldersAndFiles = await getTotalFoldersAndFiles(pluginsFolder);
     try {
       console.log(chalk.bgGreen(chalk.white(`Library Baileys Versi ${(await fetchLatestBaileysVersion()).version} Telah Terinstall`)));
     } catch (e) {
-      console.error(chalk.bgRed(chalk.white('Baileys Library Not Installed')));
+      console.error(chalk.bgRed(chalk.white('Library Baileys Tidak Terinstall')));
     }
   })
 
@@ -121,23 +121,23 @@ const totalFoldersAndFiles = await getTotalFoldersAndFiles(pluginsFolder);
     const ramInGB = os.totalmem() / (1024 * 1024 * 1024);
     const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
 
-    console.log(`╭──⎔ Dashboard System ⎔
+    console.log(`╭──⎔ Dashboard Sistem ⎔
 ┣ Name Bot: ${chalk.white(packageJsonObj.name)}
-┣ Version: ${chalk.white(packageJsonObj.version)}
-┣ Description: ${chalk.white(packageJsonObj.description)}
+┣ Versi: ${chalk.white(packageJsonObj.version)}
+┣ Deskripsi: ${chalk.white(packageJsonObj.description)}
 ┣ Os: ${chalk.white(os.type())}
-┣ Memory: ${chalk.white(freeRamInGB.toFixed(2) + ' / ' + ramInGB.toFixed(2))}
+┣ Memori: ${chalk.white(freeRamInGB.toFixed(2) + ' / ' + ramInGB.toFixed(2))}
 ┣ IP: ${chalk.red(data)}
 ┣ Owner: ${chalk.white(global.info.nomerown)}
 ╰──⎔⎔
-╭──⎔⎔ ${chalk.bgCyan(chalk.white('Bot Specifications'))} ⎔⎔
-┣ Feature: ${chalk.white(totalFoldersAndFiles.files)} Feature
+╭──⎔⎔ ${chalk.bgCyan(chalk.white('Spesifikasi Bot'))} ⎔⎔
+┣ Fitur: ${chalk.white(totalFoldersAndFiles.files)} Fitur
 ╰──⎔⎔ 
 
-⎔──⎔⎔ Creator: ${chalk.bold.cyan('NOUREDDINE OUAFY')} ⎔⎔──⎔`)
+⎔──⎔⎔ Creator: ${chalk.bold.cyan('Tio')} ⎔⎔──⎔`)
     
   } catch (err) {
-    console.error(chalk.red(`Can not read File package.json: ${err}`));
+    console.error(chalk.red(`Tidak Bisa Membaca File package.json: ${err}`));
   }
 
   setInterval(() => {}, 1000);
